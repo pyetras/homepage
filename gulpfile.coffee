@@ -15,7 +15,7 @@ gulp.task 'default', ['connect', 'build'], ->
   gulp.start('watch')
 
 gulp.task 'deploy', ->
-  gulp.src('./build/**/*').pipe plugins.ghPages()
+  gulp.src('./build/**/*').pipe plugins.ghPages(branch: 'master')
 
 sources =
   less: ['./assets/styles/**/*.less', '!./assets/styles/**/_*.less']
