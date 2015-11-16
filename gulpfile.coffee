@@ -7,6 +7,7 @@ _ = require 'lodash'
 runSequence = require('run-sequence')
 del = require('del')
 mainBowerFiles = require('main-bower-files')
+vinylPaths = require('vinyl-paths')
 
 gulp.task 'build', ['less', 'coffee', 'js', 'slim', 'images', 'fonts', 'inject', 'misc']
 
@@ -139,6 +140,7 @@ injection = ->
         "<link rel=\"stylesheet\" href=\"./#{p}\">"
 
   gulp.src('./build/layout.html')
+    .pipe(vinylPaths(del))
     .pipe(plugins.inject(bower, {
       starttag: '<!--inject:vendor:{{ext}}-->'
       endtag: '<!--endinject-->'
