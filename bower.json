@@ -1,0 +1,23 @@
+{
+  "name": "pyetras.github.com",
+  "description": "My home page",
+  "main": "gulpfile.js",
+  "authors": [
+    "Piotr Sokólski"
+  ],
+  "license": "Private",
+  "keywords": [
+    "homepage",
+    "gulp"
+  ],
+  "homepage": "https://github.com/pyetras/pyetras.github.com",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
