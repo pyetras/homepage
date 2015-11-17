@@ -9,4 +9,4 @@
 
 ## Deployment (to GitHub)
 
-`gulp deploy`
+`gulp build && gulp deploy`

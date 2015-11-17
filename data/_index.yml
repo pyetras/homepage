@@ -1,12 +1,7 @@
 projects:
-  - name: shareless
-    class: shareless
-    href: "https://www.youtube.com/watch?v=eV1Srx4BHpg"
-    description: "A file sharing service that streams the data to the recipient. An early experiment in Node.js' sockets and non-blocking i/o."
-    videos:
-      - src: "/images/shareless.mp4"
-      - src: "/images/shareless.webm"
-    poster: "/images/shareless.png"
+  - name: Relaks
+    class: relaks
+    description: "Relaks is a Scala DSL for defining Machine Learning experiments and automatically optimizing their parameters. Coming soon!"
 
   - name: Progress
     class: progress
@@ -15,6 +10,15 @@ projects:
       - src: "/images/progress.mp4"
       - src: "/images/progress.webm"
     poster: "images/progress.png"
+
+  - name: shareless
+    class: shareless
+    href: "https://www.youtube.com/watch?v=eV1Srx4BHpg"
+    description: "A file sharing service that streams the data to the recipient. An early experiment in Node.js' sockets and non-blocking i/o."
+    videos:
+      - src: "/images/shareless.mp4"
+      - src: "/images/shareless.webm"
+    poster: "/images/shareless.png"
 
   - name: Read·a·bit
     class: readabit
