@@ -29,13 +29,12 @@ section id="projects"
   h2 Projects
   ul
     - for proj in projects
-      a class="#{proj['class']}" href="#{proj['href']}" title="#{proj['title']}"
+      a *{'class'=>proj['class'], 'href'=>proj['href'], 'title'=>proj['name']}
         li
           div.thumbnail
             - if proj.has_key? 'videos'
               video width="auto" height="100%" autoplay=true muted=true loop=true
                 - for video in proj['videos']
-                  source src="#{video['src']}"
-          h3 
-            span = proj['name']
+                  source src=video['src']
+          h3: span = proj['name']
           p = proj['description']

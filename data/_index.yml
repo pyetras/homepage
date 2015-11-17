@@ -1,6 +1,5 @@
 projects:
   - name: shareless
-    title: shareless
     class: shareless
     href: "https://www.youtube.com/watch?v=eV1Srx4BHpg"
     description: "A file sharing service that streams the data to the recipient. An early experiment in Node.js' sockets and non-blocking i/o."
@@ -8,8 +7,6 @@ projects:
       - src: "/images/shareless.mp4"
       - src: "/images/shareless.webm"
 
-  - name: flatloc
-    title: flatloc
-    class: flatloc
-    href: "/"
-    description: flatloc is flatloc
+  - name: RoboD
+    class: robod
+    description: A proud (robot) sumo champion! An excursion into embedded programming with C.
