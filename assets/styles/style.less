@@ -140,6 +140,14 @@ section#projects {
   padding-bottom: 10px;
   overflow: auto;
 
+  video {
+    display: none;
+  }
+
+  &:hover video {
+    display: block;
+  }
+
   h2 {
     font-size: 24pt;
   }
@@ -204,6 +212,15 @@ section#projects {
 
     .progress .thumbnail {
       background-image: url('/images/progress.png');
+    }
+
+    .readabit .thumbnail {
+      background-image: url('/images/readabit.png');
+      background-position-x: -6px;
+
+      video {
+        transform: translateX(-6px);
+      }
     }
 
   }

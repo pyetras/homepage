@@ -16,6 +16,15 @@ projects:
       - src: "/images/progress.webm"
     poster: "images/progress.png"
 
+  - name: Read·a·bit
+    class: readabit
+    href: "http://readabit-staging.herokuapp.com/"
+    description: "A Bitcoin Paywall app which is extremely easy to integrate with any existing blog or even a static webpage. A Coinbase hackhathon entry."
+    videos:
+      - src: "/images/readabit.mp4"
+      - src: "/images/readabit.webm"
+    poster: "images/readabit.png"
+
   - name: RoboD
     class: robod
     href: "https://goo.gl/photos/NNUHQV7c3nEkw5D89"
