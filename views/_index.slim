@@ -1,2 +1,40 @@
-h1 Hello
-p hi hai ho
+#main
+  h1 Piotr Sokólski
+  p#tagline  Hi, my name is Piotr Sokólski and I'm a programmer living in Warsaw, Poland. 
+  ul#navigation
+    li style=("clear:both; overflow:hidden") 
+      span cv
+      ul#cvopts
+        li
+          a href="http://url.pyetras.com/cvPiotrSokolski_pl.pdf"  pl
+        li
+          a href="http://dl.dropbox.com/u/176641/cvpiotrsokolski_en.pdf"  en
+    /! <li><a href="http://codepit.pyetras.com/">blog</a></li
+    li
+      | projects:
+      ul#projectslist
+        li
+          a href="http://shrlss.com"  shareless
+          | (node.js)
+    li#mail
+      a href="/PiotrSokolski.vcf" 
+        img src="/images/vcard-alt.svg"
+      a href="mailto:p@pyetras.com"  p@pyetras.com
+  #whereabouts
+    h2 whereabouts
+    ul#whereabouts-list
+      li
+        a href="http://github.com/pyetras" title="GitHub"
+          i.fa.fa-github
+      li.separator
+      li
+        a href="http://twitter.com/pyetras" title="Twitter"
+          i.fa.fa-twitter
+      li.separator
+      li
+        a href="http://www.facebook.com/pyetras" title="Facebook"
+          i.fa.fa-facebook
+      li
+        a href="http://www.youtube.com/user/pietraswithin" title="YouTube"
+          i.fa.fa-youtube
+hr
