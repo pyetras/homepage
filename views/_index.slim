@@ -28,13 +28,14 @@ hr
 section id="projects"
   h2 Projects
   ul
-    a href="https://www.youtube.com/watch?v=eV1Srx4BHpg" title="shareless"
-      li
-        div.thumbnail
-          video width="auto" height="100%" autoplay="" muted="" loop="" style="transform: translateX(-35%);"
-            source src='/images/shareless.mp4'
-            source src='/images/shareless.webm' type='video/webm;codecs="vp8, vorbis"'
-        h3 
-          span shareless
-        p A file sharing without storage service. An early experiment in Node.js' sockets and event loop.
-  
+    - for proj in projects
+      a class="#{proj['class']}" href="#{proj['href']}" title="#{proj['title']}"
+        li
+          div.thumbnail
+            - if proj.has_key? 'videos'
+              video width="auto" height="100%" autoplay=true muted=true loop=true
+                - for video in proj['videos']
+                  source src="#{video['src']}"
+          h3 
+            span = proj['name']
+          p = proj['description']

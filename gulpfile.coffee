@@ -8,6 +8,8 @@ runSequence = require('run-sequence')
 del = require('del')
 mainBowerFiles = require('main-bower-files')
 vinylPaths = require('vinyl-paths')
+hi = require('highland')
+yaml = require('js-yaml')
 
 gulp.task 'build', ['less', 'coffee', 'js', 'slim', 'images', 'fonts', 'inject', 'misc']
 
@@ -26,6 +28,7 @@ sources =
   slim: ['./views/**/*.slim', '!./views/**/_*.slim']
   misc: './assets/misc/*'
   fonts: './assets/fonts/*'
+  data: './data/*.yml'
 
 
 gulp.task 'connect', ->
@@ -70,6 +73,7 @@ watcher = ->
     .pipe(plugins.notify {message : 'Images updated' })
 
   gulp.watch ['./views/**/*.slim'], ['slim', 'inject:bower']
+  gulp.watch sources.data, ['slim', 'inject:bower']
 
   gulp.watch 'bower.json', ['inject:bower']
 
@@ -113,17 +117,30 @@ gulp.task 'js', ->
     .pipe(plugins.newer('./build/assets/js'))
     .pipe(jsPipe())
 
-slimPipe = lazypipe()
-  .pipe(plugins.slim, pretty: true)
-  .pipe(gulp.dest, './build')
-
 # gulp.task 'html', ->
 #   gulp.src(sources.templates)
 #     .pipe(htmlTplPipe())
 
+dataPipe = ->
+  gulp.src(sources.data)
+    .pipe(hi())
+    .map (file) ->
+      json = yaml.safeLoad(file.contents.toString())
+      name = path.basename(file.path, '.yml')
+      [name, json]
+    .reduce {}, (obj, [name, json]) ->
+      obj[name] = json
+      obj
+    .flatMap (data) ->
+      gulp.src(sources.slim)
+        .pipe(plugins.slim {pretty: true, data: data})
+        .pipe(hi())
+    .pipe(gulp.dest('./build'))
+
+gulp.task 'data', -> dataPipe()
+
 gulp.task 'slim', ->
-  views = gulp.src(sources.slim)
-    .pipe(slimPipe())
+  dataPipe()
     .pipe(plugins.livereload())
     .pipe(plugins.notify({onLast: true, message : 'Slim compiled' }))
 

@@ -13,7 +13,7 @@ html
         /! inject:css
         /! endinject
   body
-    == Slim::Template.new('views/_index.slim').render
+    == Slim::Template.new('views/_index.slim').render(Object.new, _index)
     
     /! inject:vendor:js
     /! endinject
