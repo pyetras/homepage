@@ -168,6 +168,7 @@ section#projects {
         border-bottom-left-radius: 10px;
         margin-right: 12px;
         background-size: cover;
+        mask-image: radial-gradient(circle, white 100%, black 100%);
       }
 
       h3 {
@@ -185,10 +186,11 @@ section#projects {
       }
     }
 
-    .shareless .thumbnail {
-      background-image: url('/images/shareless.png');
-      background-position-x: 60%;
-
+    .shareless {
+      .thumbnail, video {
+        background-image: url('/images/shareless.png');
+        background-position-x: 60%;
+      }
       video {
         transform: translateX(-35%);
       }
@@ -196,6 +198,10 @@ section#projects {
 
     .robod .thumbnail {
       background-image: url('/images/dobo.jpg');
+    }
+
+    .progress .thumbnail {
+      background-image: url('/images/progress.png');
     }
 
   }

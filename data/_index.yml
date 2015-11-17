@@ -6,7 +6,17 @@ projects:
     videos:
       - src: "/images/shareless.mp4"
       - src: "/images/shareless.webm"
+    poster: "/images/shareless.png"
+
+  - name: Progress
+    class: progress
+    description: "A desktop app for visualising daily self-tracking data. Able to work with CSV and Excel files. Built with Electron."
+    videos:
+      - src: "/images/progress.mp4"
+      - src: "/images/progress.webm"
+    poster: "images/progress.png"
 
   - name: RoboD
     class: robod
+    href: "https://goo.gl/photos/NNUHQV7c3nEkw5D89"
     description: A proud (robot) sumo champion! An excursion into embedded programming with C.
