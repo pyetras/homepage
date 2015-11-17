@@ -1,0 +1,80 @@
+header {
+  padding-left: 3em;
+  padding-top: 50px;
+  background-color: @header-color;
+  color: #fff;
+
+  h1 {
+    letter-spacing: -4px;
+  }
+
+  p#tagline {
+    font-style: italic;
+  	text-align: justify;
+  	display: block;
+  	width: 25em;
+  	margin-top: 10px;
+  }
+
+  ul#navigation {
+  	margin-top: 30px;
+  	font-size: 26pt;
+
+    li#mail {
+    	margin-top: .8em;
+    	position: relative;
+    	height: 1.5em;
+
+      a {
+        &:first-child {
+        	position: absolute;
+        }
+
+        &:last-child {
+        	display: block;
+        	position: absolute;
+        	left: 50px;
+        	top: -5px;
+          .underlined(#fff, @header-color);
+        }
+
+        img {
+          filter: invert(1);
+        }
+      }
+    }
+
+  }
+
+  #whereabouts {
+  	height: 4em;
+  }
+
+  #whereabouts-list {
+  	margin-top: 15px;
+
+    li {
+    	display: block;
+    	float: left;
+    	margin-right: 1em;
+    	height: 27px;
+
+      a {
+        &, &:hover, &:visited {
+          color: white;
+        }
+      }
+
+    }
+  }
+
+}
+
+hr {
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #fff;
+	margin-top: -3em;
+	float: left;
+	height: 2px;
+}
