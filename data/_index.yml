@@ -10,7 +10,7 @@ projects:
 
   - name: Progress
     class: progress
-    description: "A desktop app for visualising daily self-tracking data. Able to work with CSV and Excel files. Built with Electron."
+    description: "A desktop app for visualising daily self-tracking data. Able to sync with CSV and Excel files. Built with Electron."
     videos:
       - src: "/images/progress.mp4"
       - src: "/images/progress.webm"
