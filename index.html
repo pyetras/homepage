@@ -3,16 +3,69 @@
   <head>
     <title>Progress</title>
     <meta content="text/html; charset=UTF8" http-equiv="content-type" />
-    <link href="" rel="shortcut icon">
+    <link href="/favicon.ico" rel="shortcut icon" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
       <!--inject:vendor:css--><!--endinject--><!--inject:css--><link rel="stylesheet" href="./assets/styles/style.css"><!--endinject-->
     </link>
   </head>
   <body>
-    <h1>
-      Hello
-    </h1>
-    <p>
-      hi hai ho
-    </p><!--inject:vendor:js--><!--endinject--><!--inject:js--><!--endinject-->
+    <header>
+      <h1>
+        Piotr Sokólski
+      </h1>
+      <p id="tagline">
+        Hi, my name is Piotr Sokólski and I'm a programmer living in Warsaw, Poland. 
+      </p>
+      <ul id="navigation">
+        <li id="mail">
+          <a href="/PiotrSokolski.vcf" title="vCard"><img src="/images/vcard-alt.svg" /></a><a href="mailto:p@pyetras.com">p@pyetras.com</a>
+        </li>
+      </ul>
+      <div id="whereabouts">
+        <h2>
+          whereabouts
+        </h2>
+        <ul id="whereabouts-list">
+          <li>
+            <a href="http://github.com/pyetras" title="GitHub"><i class="fa fa-github"></i></a>
+          </li>
+          <li class="separator"></li>
+          <li>
+            <a href="http://twitter.com/pyetras" title="Twitter"><i class="fa fa-twitter"></i></a>
+          </li>
+          <li class="separator"></li>
+          <li>
+            <a href="http://www.facebook.com/pyetras" title="Facebook"><i class="fa fa-facebook"></i></a>
+          </li>
+          <li>
+            <a href="http://www.youtube.com/user/pietraswithin" title="YouTube"><i class="fa fa-youtube"></i></a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <hr />
+    <section id="projects">
+      <h2>
+        Projects
+      </h2>
+      <ul>
+        <a href="https://www.youtube.com/watch?v=eV1Srx4BHpg" title="shareless">
+          <li>
+            <div class="thumbnail">
+              <video autoplay="" height="100%" loop="" muted="" style="transform: translateX(-35%);" width="auto">
+                <source src="/images/shareless.mp4" /><source src="/images/shareless.webm" type="video/webm;codecs=&quot;vp8, vorbis&quot;" />
+              </video>
+            </div>
+            <h3>
+              <span>shareless</span>
+            </h3>
+            <p>
+              A file sharing without storage service. An early experiment in Node.js' sockets and event loop.
+            </p>
+          </li>
+        </a>
+      </ul>
+    </section><!--inject:vendor:js--><!--endinject--><!--inject:js--><!--endinject-->
   </body>
 </html>
