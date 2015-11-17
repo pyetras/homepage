@@ -19,6 +19,7 @@ gulp.task 'deploy', ->
 
 sources =
   less: ['./assets/styles/**/*.less', '!./assets/styles/**/_*.less']
+  css: ['./assets/styles/**/*.css']
   coffee: './assets/js/**/*.coffee'
   js: './assets/js/**/*.js'
   images: './assets/images/**/*'
@@ -35,11 +36,12 @@ gulp.task 'connect', ->
 
 watcher = ->
   plugins.livereload.listen()
-
-  gulp.src(sources.less[0])
-    .pipe(plugins.watch sources.less[0], plugins.batch (events, done) ->
+  css = './assets/styles/**/*'
+  gulp.src(css)
+    .pipe(plugins.watch css, plugins.batch (events, done) ->
       gulp.start('inject:css', done)
     )
+    .pipe(plugins.livereload())
 
   removedFilter = () ->
     plugins.filter((file) ->
@@ -122,6 +124,7 @@ slimPipe = lazypipe()
 gulp.task 'slim', ->
   views = gulp.src(sources.slim)
     .pipe(slimPipe())
+    .pipe(plugins.livereload())
     .pipe(plugins.notify({onLast: true, message : 'Slim compiled' }))
 
 injection = ->
