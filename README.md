@@ -1,4 +1,8 @@
 # [pyetras.com](http://pyetras.com)
+## Requirements
+
+Uses Node.js v0.11.13.
+
 ## Installation
 
 `npm install`
