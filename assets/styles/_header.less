@@ -1,8 +1,15 @@
 header {
-  padding-left: 3em;
+  @media screen and (min-width: 500px) {
+    padding-left: 3em;
+  }
+  @media screen and (max-width: 500px) {
+    padding-left: 10px;
+  }
+  padding-right: 10px;
   padding-top: 50px;
   background-color: @header-color;
   color: #fff;
+  overflow: hidden;
 
   h1 {
     letter-spacing: -4px;
@@ -12,8 +19,10 @@ header {
     font-style: italic;
   	text-align: justify;
   	display: block;
-  	width: 25em;
-  	margin-top: 10px;
+    margin-top: 10px;
+    @media screen and (min-width: 600px) {
+  	  width: 25em;
+    }
   }
 
   ul#navigation {
