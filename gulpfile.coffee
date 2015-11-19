@@ -11,6 +11,8 @@ vinylPaths = require('vinyl-paths')
 hi = require('highland')
 yaml = require('js-yaml')
 
+isProduction = _.startsWith(process.env['NODE_ENV'], 'prod')
+
 gulp.task 'build', ['less', 'coffee', 'js', 'slim', 'images', 'fonts', 'inject', 'misc']
 
 gulp.task 'default', ['connect', 'build'], ->
@@ -79,12 +81,16 @@ watcher = ->
 
 gulp.task 'watch', -> watcher()
 
+sourcemapsInit = if isProduction then plugins.util.noop else plugins.sourcemaps.init
+sourcemapsWrite = if isProduction then plugins.util.noop else plugins.sourcemaps.write
+
 lessPipe = lazypipe()
-  .pipe(plugins.sourcemaps.init)
+  .pipe(sourcemapsInit)
   .pipe(plugins.less, {paths: [path.join(__dirname, 'bower_components')]})
   .pipe(plugins.autoprefixer)
-  .pipe(plugins.sourcemaps.write)
   .pipe(plugins.concatCss, 'style.css')
+  .pipe(if isProduction then plugins.minifyCss else plugins.util.noop)
+  .pipe(sourcemapsWrite)
   .pipe(gulp.dest, './build/assets/styles')
   .pipe(plugins.livereload)
   .pipe(plugins.notify, {onLast: true, message : 'Less compiled' })
@@ -99,9 +105,9 @@ coffeePipe = lazypipe()
     return
   )
   .pipe(plugins.newer, {dest: './build/assets/js', ext: '.js'})
-  .pipe(plugins.sourcemaps.init)
-  .pipe(plugins.coffee, bare: true, sourceMap: true)
-  .pipe(plugins.sourcemaps.write)
+  .pipe(sourcemapsInit)
+  .pipe(plugins.coffee, bare: true, sourceMap: !isProduction)
+  .pipe(sourcemapsWrite)
   .pipe(gulp.dest, './build/assets/js')
   .pipe(plugins.notify, {onLast: true, message : 'Coffee compiled' })
 
@@ -133,7 +139,7 @@ dataPipe = ->
       obj
     .flatMap (data) ->
       gulp.src(sources.slim)
-        .pipe(plugins.slim {pretty: true, data: data})
+        .pipe(plugins.slim {pretty: !isProduction, data: data})
         .pipe(hi())
     .pipe(gulp.dest('./build'))
 

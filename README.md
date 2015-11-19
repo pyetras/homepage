@@ -13,4 +13,4 @@ Uses Node.js v0.11.13.
 
 ## Deployment (to GitHub)
 
-`gulp build && gulp deploy`
+`NODE_ENV=production gulp build && gulp deploy`

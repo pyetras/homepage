@@ -32,6 +32,7 @@
     "gulp-slim": "^0.3.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-traceur": "^0.17.1",
+    "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "highland": "^2.5.1",
     "js-yaml": "^3.4.3",
