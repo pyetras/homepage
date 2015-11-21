@@ -10,6 +10,7 @@ projects:
       - src: "/images/progress.mp4"
       - src: "/images/progress.webm"
     poster: "images/progress.png"
+    href: "http://pyetras.com/progress/"
 
   - name: Flatloc
     class: flatloc
