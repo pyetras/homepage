@@ -33,15 +33,16 @@ section#projects {
 
     a {
       display: inline-block;
-      transition: transform 200ms;
-      -webkit-transform: translate3d(0, 0, 0); //safari has some issues...
+      // transition: transform 200ms;
     }
 
-    a[href]:hover {
-      transform: scale(1.05);
+    a[href] li:hover {
+      box-shadow: 0 8px 17px 0 rgba(0,0,0,0.15),0 6px 20px 0 rgba(0,0,0,0.1);
+      // transform: scale(1.02);
     }
 
     li {
+      // -webkit-transform: translate3d(0, 0, 0); //safari has some issues...
       font-size: 11pt;
       @media only screen
         and (max-device-width: 667px)
@@ -60,6 +61,7 @@ section#projects {
       margin-bottom: 15px;
       height: 100px;
       overflow: hidden;
+      transition: box-shadow 150ms, transform 200ms;
 
       .thumbnail {
         width: 100px;
