@@ -1,3 +1,6 @@
+info:
+  description: "Hi, my name is Piotr and I'm a programmer living in London."
+
 projects:
   - name: Relaks
     class: relaks
