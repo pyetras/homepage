@@ -1,0 +1,37 @@
+== Slim::Template.new('views/_layout.slim').render(Object.new, _head.merge(_relaks)) do
+  markdown:
+    I love the idea behind declarative programming languages: you start by specifying the result you want to achieve rather than how you want to achieve it.
+    Some, such as SQL hide away the complexity by providing a fixed set of highly optimized and yet expressive high-level operations such as SELECT, JOIN etc.
+    Others, such as my personal favourite, Prolog, allow achieving similar results while ganting unlimited flexibility.
+
+    The design of Prolog is simple and beautiful.
+    It basically does just two things, and it does them really well: allowing you to specify a search tree for your problem and then traversing that tree.
+
+    The devil is in the details though: Prolog's logic based rules are pure and merciless.
+    One overlooked condition, and the program would be stuck forever, generating and mindlessly following an infinite number of branches in the tree, while the solution might lie just in the *other* child of the starting node.
+
+    In my opinion the language of the future does not *traverse* the tree specified by the programmer, whether it's an Abstract Syntax Tree that is translated literally to a sequence of operations, or a tree of theorems and conclusions explored by Prolog.
+    Instead it *searches* through it.
+
+    Consider the following statement:
+
+        val k = choose between 1 and 5
+        select k where k == 2
+
+    Looks simple enough, right? With a slight syntax alterations Prolog could do it.
+    SQL could do it, if `choose` was a function that generates a table of numbers.
+    Even Pyhton in Python, a code where `choose` is replaced by `range` would look similar enough. How about
+
+        val k = choose between 1.0 and 5.0
+        select k where k == 2.0
+
+    In theory it should be unsolvable by Prolog in the straightforward, left to right tree traversal - there is an infinitely many numbers between 1.0 and 2.0 (even though an implementation of this search based on computer's representation of floating numbers would eventually finish). How about
+
+        optimize (knnExperiment) by errorRate asc limit 10
+
+    What I would like this expression to do is to run a K Nearest Neighbors algorithm ten times while trying to find the minimum `errorRate` with respect to its parameters.
+
+    ## Work in progress...
+
+    An experimental implementation of a language of the future with a numerical optimizer as a DSL for Scala is available at [Github](//github.com/pyetras/relaks). This was part of my [Master's Thesis](/relaks.pdf).
+

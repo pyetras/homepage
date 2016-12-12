@@ -1,0 +1,105 @@
+@article-width: 648px;
+html.article {
+  background-color: #fff;
+}
+.article body {
+  background: linear-gradient(to bottom, @header-color 400px, #fff 400px);
+  background-color: #fff;
+
+  header {
+    font-family: HoeflerText-Regular, Cochin, Georgia, serif;
+    width: 100%;
+    height: 400px - 15px;
+    position: relative;
+    padding-bottom: 15px;
+    color: #fff;
+    background-color: @header-color;
+  }
+
+  .title {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+
+    h1 {
+      font-size: 56px;
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+      line-height: 1.1em;
+    }
+
+    .byline {
+      font: 400 16px/1.55em -apple-system, BlinkMacSystemFont, "Roboto", Helvetica, sans-serif;
+      font-size: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.9);
+      margin: auto;
+      box-sizing: border-box;
+      padding-top: 12px;
+      width: @article-width;
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      .item {
+        text-align: left;
+        margin-right: 8px;
+        padding-left: 20px;
+        width: 68px;
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .item:first-child {
+        border-left: none;
+      }
+    }
+  }
+
+  div.main {
+    box-shadow: inset 0 1px 0 0 rgba(0,0,0,.05),inset 0 2px 3px 0 rgba(0,0,0,.1);
+  }
+
+  article {
+    font-family: Georgia, serif;
+    margin: auto;
+    padding-top: 54px;
+    width: @article-width;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 20px;
+    line-height: 1.55em;
+
+    img, video {
+      max-width: @article-width + 168px;
+      margin-left: -168px / 2;
+      margin-top: 90px - 24px;
+      margin-bottom: 90px - 24px;
+    }
+
+    p {
+      margin-bottom: 24px;
+      text-align: justify;
+    }
+
+    h2 {
+      font-family: HoeflerText-Regular, Cochin, Georgia, serif;
+      font-weight: 400;
+      font-size: 30px;
+      margin-top: 36px;
+      margin-bottom: 24px;
+    }
+
+    a {
+      .underlined(rgba(0, 0, 0, 0.8), #fff);
+    }
+
+    em {
+      font-weight: 700;
+    }
+
+    pre, code {
+      margin-bottom: 24px;
+    }
+  }
+}

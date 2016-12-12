@@ -1,10 +1,8 @@
-info:
-  description: "Hi, my name is Piotr and I'm a programmer living in London."
-
 projects:
   - name: Relaks
     class: relaks
     description: "Relaks is a Scala DSL for defining Machine Learning experiments and automatically optimizing their parameters. Coming soon!"
+    href: "/relaks.html"
 
   - name: Progress
     class: progress

@@ -1,0 +1,11 @@
+doctype html
+html
+  == Slim::Template.new('views/_head.slim').render(Object.new, {title: 'Piotr Sokólski'}.merge(_head))
+  body.index
+    == File.read("views/_gtm.html")
+    == Slim::Template.new('views/_index.slim').render(Object.new, _index.merge(_head))
+
+    /! inject:vendor:js
+    /! endinject
+    /! inject:js
+    /! endinject

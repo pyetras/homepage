@@ -31,6 +31,7 @@ sources =
   misc: './assets/misc/*'
   fonts: './assets/fonts/*'
   data: './data/*.yml'
+  html: './build/**/*.htmltpl'
 
 
 gulp.task 'connect', ->
@@ -140,6 +141,7 @@ dataPipe = ->
     .flatMap (data) ->
       gulp.src(sources.slim)
         .pipe(plugins.slim {pretty: !isProduction, data: data})
+        .pipe(plugins.rename((path) -> path.extname = '.htmltpl'))
         .pipe(hi())
     .pipe(gulp.dest('./build'))
 
@@ -165,7 +167,7 @@ injection = ->
       when '.css'
         "<link rel=\"stylesheet\" href=\"./#{p}\">"
 
-  gulp.src('./build/layout.html')
+  gulp.src(sources.html)
     .pipe(vinylPaths(del))
     .pipe(plugins.inject(bower, {
       starttag: '<!--inject:vendor:{{ext}}-->'
@@ -181,7 +183,7 @@ injection = ->
       transform: transformer
     }))
 
-    .pipe(plugins.rename('index.html'))
+    .pipe(plugins.rename((path) -> path.extname = '.html'))
     .pipe(gulp.dest('./build'))
 
 gulp.task 'inject', ['slim', 'coffee', 'js', 'less'], injection
