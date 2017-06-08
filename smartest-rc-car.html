@@ -1,0 +1,73 @@
+<!DOCTYPE html><html class="article"><head><title>The Smartest R/C Car</title><meta content="text/html; charset=UTF8" http-equiv="content-type" /><meta content="Hi, my name is Piotr and I&#39;m a programmer living in London." name="description" /><meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" name="viewport" /><link href="/images/favicon.png" rel="shortcut icon" /><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"><!--inject:vendor:css--><!--endinject--><!--inject:css--><link rel="stylesheet" href="./assets/styles/style.css"><!--endinject--></link></head><body class="article"><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TFCCMW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TFCCMW');</script>
+<header><div class="title"><h1>The Smartest R/C Car</h1><div class="byline"><div class="item">Piotr Sokólski</div><div class="item">21 March 2017</div><div class="item">Hardware</div></div></div></header><div class="main"><article><p>This article&#39;s aim is to present a hardware project I&#39;ve been recently busy with.</p>
+
+<p>With the imminent dawn of self-driving vehicles, the art and craft of developing the software and hardware remains elusive.
+It&#39;s no suprise: after all the domain is still very much in it&#39;s infancy.
+Engineering a robust system involves tight cooperation of the most cutting edge software and (potentially) dangerous and expensive hardware.
+Therfore, the bar for entry is set very high and only available to companies with vast resources, such as Alphabet&#39;s Waymo.</p>
+
+<p>As a programmer, I would often take for granted the democratization and openness of the field I work in.
+I&#39;d often overlook the wonder of state of the art technology simply being there in the open on Github, a few terminal commands away from working on my desktop.</p>
+
+<p>Fortunately, the field of self-driving vehicles seems to be taking steps in that direction.
+There are MOOCs and <a href="http://selfdrivingcars.mit.edu/">free online materials</a> offered for anyone who&#39;s interested in the topic.
+However, they still lack a hardware platform where the learners can safely and quickly evaluate their ideas.
+The best we can hope for right now is a simulator.
+I believe that making an approximation of the technology available to anyone who wishes to try it is possible, just as it was possible with VR and Google Cardboard.</p>
+
+<p><img src="/images/kart1.jpg" alt="Prototype 2"></p>
+
+<p>The platform I&#39;m proposing is not unlike the Cardboard.
+The principles remain the same: low cost (or made of things you likely already own) and no need for expert knowledge to get started.
+I&#39;ve been working on a toy car based on a smartphone that is able to reuse the sensors (GPS, compass, accelerometer, light), connectivity and high-res camera available on all modern devices.</p>
+
+<p><img src="/images/kart2.jpg" alt="Prototype 2"></p>
+
+<p>And it takes your phone for a ride!</p>
+
+<h2>First Prototype</h2>
+<video autoplay="" loop="" muted="" src="/images/kart0-drive.webm"></video><p>The first prototype was a proof of concept of phone-to-computer and phone-to-chip communication.
+I&#39;ve put an iPhone 5S (you can see it falling off at the end of the video...) on a slightly modified <a href="https://www.amazon.com/Tamiya-70112-Buggy-Car-Chassis/dp/B002DR3H62" target="_blank">Buggy Car kit</a>.
+I&#39;ve used a mini-jack interface (the audio port) to communicate between the phone and an Arduino Uno that controlled a servo and a DC motor driving the car.
+A protocol similar to a dial-up modem&#39;s was used to encode and decode messages (and with the speaker enabled it even sounded similar).
+Then using the HTML5 audio api I was able to transmit commands from a computer to the phone using just a regular web server (in Node.js) and phone&#39;s browser.
+Not too bad for a quick prototype.
+Using the iPhone&#39;s browser audio APIs allowed me to avoid the time (and money) consuming process of writing a native app.</p>
+
+<h2>Second Prototype</h2>
+
+<p>While the first prototype was a proof of concept of the communication model, the
+second has the shape of what I originally had in mind.</p>
+
+<p><img src="/images/kart3.jpg" alt="Prototype 2"></p>
+
+<p>This time the phone itself becomes a part of car&#39;s chassis.
+A periscope (which <a href="https://www.kickstarter.com/projects/1317724211/covr-photo-an-iphone-case-with-a-built-in-prism-le">originally</a> is a <a href="https://techcrunch.com/2016/04/28/covr-photo/">pretty creepy</a> iPhone camera case) allows the phone&#39;s camera to face forward.</p>
+
+<p><img src="/images/kart-project.jpg" alt="Autodesk Fusion360 Project"></p>
+
+<p>I&#39;ve reused some parts from the buggy kit and 3D-printed outer parts of the chassis to allow for mounting the extra elements on top of it.
+Interestingly, I&#39;ve found that a laser cutter is way more roubst and reliable tool for rapid prototyping than a 3D printer (as long as you can live with the limitations).
+While lacking the 3D-ness, it takes just minutes from an idea to a tangible object, even for bigger parts.
+And once you have the speed and power settings right for your material it&#39;s unlikely to fail mid-build.</p>
+<video autoplay="" loop="" muted="" src="/images/kart-drive.webm"></video><p>The recorded video is not ideal for self-driving purposes - it produces a portrait
+image rather than more useful landscape view and a lot of space is taken up by the close-up of the floor.
+I&#39;m hoping it will be sufficient for Computer Vision processing applications.
+I&#39;d imagine that at some later stage it would be possible to replace the regular lens in the periscope with a fish-eye.</p>
+
+<h2>The Road Ahead</h2>
+
+<p>With the hardware more or less stable (although there&#39;s a lot of room for improvement and even more ideas to implement), I&#39;m able to focus on even more interesting part - the software!
+The toy car simulates a life sized autonomous vehicle to a limited extent: no LIDAR, no point for lane or road sign detection, limited usefulness of GPS on shorter distances.
+However, equally interesting topics, such as object recognition, learning steering or visual should be perfectly explorable using the platform!
+With communication to a computer re-established (this time there&#39;s no avoiding native apps) I plan to work on employing phone&#39;s camera and sensors to implement an odometer.
+After all, a phone that can find it&#39;s way back home is an appliance many would appreciate.</p>
+
+<p><img src="/images/kart4.jpg" alt="Prototype 2"></p>
+</article></div><!--inject:vendor:js--><!--endinject--><!--inject:js--><!--endinject--></body></html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html><html class="article"><head><title>The Language of the Future&lt;br/&gt;Does Your Job For You</title><meta content="text/html; charset=UTF8" http-equiv="content-type" /><meta content="Hi, my name is Piotr and I&#39;m a programmer living in London." name="description" /><meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" name="viewport" /><link href="/images/favicon.png" rel="shortcut icon" /><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"><!--inject:vendor:css--><!--endinject--><!--inject:css--><link rel="stylesheet" href="./assets/styles/style.css"><!--endinject--></link></head><body class="article"><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TFCCMW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TFCCMW');</script>
+<header><div class="title"><h1>The Language of the Future<br/>Does Your Job For You</h1><div class="byline"><div class="item">Piotr Sokólski</div><div class="item">12 December 2017</div><div class="item">Programming Languages</div></div></div></header><div class="main"><article><p>I love the idea behind declarative programming languages: you start by specifying the result you want to achieve rather than how you want to achieve it.
+Some, such as SQL hide away the complexity by providing a fixed set of highly optimized and yet expressive high-level operations such as SELECT, JOIN etc.
+Others, such as my personal favourite, Prolog, allow achieving similar results while ganting unlimited flexibility.</p>
+
+<p>The design of Prolog is simple and beautiful.
+It basically does just two things, and it does them really well: allowing you to specify a search tree for your problem and then traversing that tree.</p>
+
+<p>The devil is in the details though: Prolog&#39;s logic based rules are pure and merciless.
+One overlooked condition, and the program would be stuck forever, generating and mindlessly following an infinite number of branches in the tree, while the solution might lie just in the <em>other</em> child of the starting node.</p>
+
+<p>In my opinion the language of the future does not <em>traverse</em> the tree specified by the programmer, whether it&#39;s an Abstract Syntax Tree that is translated literally to a sequence of operations, or a tree of theorems and conclusions explored by Prolog.
+Instead it <em>searches</em> through it.</p>
+
+<p>Consider the following statement:</p>
+
+<pre><code>val k = choose between 1 and 5
+select k where k == 2
+</code></pre>
+
+<p>Looks simple enough, right? With a slight syntax alterations Prolog could do it.
+SQL could do it, if <code>choose</code> was a function that generates a table of numbers.
+Even Pyhton in Python, a code where <code>choose</code> is replaced by <code>range</code> would look similar enough. How about</p>
+
+<pre><code>val k = choose between 1.0 and 5.0
+select k where k == 2.0
+</code></pre>
+
+<p>In theory it should be unsolvable by Prolog in the straightforward, left to right tree traversal - there is an infinitely many numbers between 1.0 and 2.0 (even though an implementation of this search based on computer&#39;s representation of floating numbers would eventually finish). How about</p>
+
+<pre><code>optimize (knnExperiment) by errorRate asc limit 10
+</code></pre>
+
+<p>What I would like this expression to do is to run a K Nearest Neighbors algorithm ten times while trying to find the minimum <code>errorRate</code> with respect to its parameters.</p>
+
+<h2>Work in progress...</h2>
+
+<p>An experimental implementation of a language of the future with a numerical optimizer as a DSL for Scala is available at <a href="//github.com/pyetras/relaks">Github</a>. This was part of my <a href="/relaks.pdf">Master&#39;s Thesis</a>.</p>
+</article></div><!--inject:vendor:js--><!--endinject--><!--inject:js--><!--endinject--></body></html>
