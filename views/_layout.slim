@@ -16,13 +16,14 @@ html.article
     header
       .title
         h1==article["title"]
-        .byline
-          .item Piotr Sokólski
-          .item=article["date"]
-          .item=article["tags"]
+        / .byline
+        /   .item Piotr Sokólski
+        /   .item=article["date"]
+        /   .item=article["tags"]
     .main
-      article
-        == yield
+      .article-container
+          article
+            == yield
 
 
     /! inject:vendor:js

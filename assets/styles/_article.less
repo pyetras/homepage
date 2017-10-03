@@ -1,10 +1,14 @@
+/* https://edwardtufte.github.io/tufte-css/ */
 @article-width: 648px;
+
 html.article {
   background-color: #fff;
 }
+
 .article body {
   background: linear-gradient(to bottom, @header-color 400px, #fff 400px);
   background-color: #fff;
+  counter-reset: sidenote-counter;
 
   header {
     font-family: HoeflerText-Regular, Cochin, Georgia, serif;
@@ -19,14 +23,17 @@ html.article {
   .title {
     position: absolute;
     bottom: 0;
-    width: 100%;
-    text-align: center;
+    width: 87.5%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 12.5%;
+    max-width: 1400px;
 
     h1 {
       font-size: 56px;
-      margin-bottom: 8px;
+      margin-bottom: 48px;
       letter-spacing: -1px;
-      line-height: 1.1em;
+      line-height: 1.3em;
     }
 
     .byline {
@@ -54,40 +61,144 @@ html.article {
       .item:first-child {
         border-left: none;
       }
+
     }
+
   }
 
   div.main {
-    box-shadow: inset 0 1px 0 0 rgba(0,0,0,.05),inset 0 2px 3px 0 rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, .05), inset 0 2px 3px 0 rgba(0, 0, 0, .1);
+    width: 100%;
+  }
+
+  .article-container {
+    width: 87.5%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 12.5%;
+    max-width: 1400px;
   }
 
   article {
     font-family: Georgia, serif;
-    margin: auto;
-    padding-top: 54px;
-    width: @article-width;
     color: rgba(0, 0, 0, 0.8);
     font-size: 20px;
     line-height: 1.55em;
+    position: relative;
+    padding: 2rem 0rem;
+
+    .numeral {
+      font-family: et-book-roman-old-style;
+    }
+
+    .danger {
+      color: red;
+    }
+
+    section {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    p, ol, ul {
+      font-size: 1.4rem;
+    }
 
     img, video {
-      max-width: @article-width + 168px;
-      margin-left: -168px / 2;
-      margin-top: 90px - 24px;
-      margin-bottom: 90px - 24px;
+      max-width: 100%;
     }
 
     p {
-      margin-bottom: 24px;
+      line-height: 2rem;
+      margin-top: 1.4rem;
+      margin-bottom: 1.4rem;
+      padding-right: 0;
+      vertical-align: baseline;
       text-align: justify;
     }
 
     h2 {
       font-family: HoeflerText-Regular, Cochin, Georgia, serif;
       font-weight: 400;
-      font-size: 30px;
-      margin-top: 36px;
-      margin-bottom: 24px;
+      font-size: 1.7rem;
+      margin-top: 2rem;
+      margin-bottom: 0;
+      line-height: 1;
+    }
+
+    div.epigraph {
+      margin: 5em 0;
+    }
+
+    div.epigraph > blockquote {
+      margin-top: 3em;
+      margin-bottom: 3em;
+    }
+
+    div.epigraph > blockquote, div.epigraph > blockquote > p {
+      font-style: italic;
+    }
+
+    div.epigraph > blockquote > footer {
+      font-style: normal;
+    }
+
+    div.epigraph > blockquote > footer > cite {
+      font-style: italic;
+    }
+
+    /* end chapter epigraphs styles */
+    blockquote {
+      font-size: 1.4rem;
+    }
+
+    blockquote p {
+      width: 55%;
+      margin-right: 40px;
+    }
+
+    blockquote footer {
+      width: 55%;
+      font-size: 1.1rem;
+      text-align: right;
+    }
+
+    section>ol, section>ul {
+      width: 45%;
+      -webkit-padding-start: 5%;
+      -webkit-padding-end: 5%;
+    }
+
+    li {
+      padding: 0.5rem 0;
+    }
+
+    figure {
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+      max-width: 55%;
+      -webkit-margin-start: 0;
+      -webkit-margin-end: 0;
+      margin: 0 0 3em 0;
+    }
+
+    figcaption {
+      float: right;
+      clear: right;
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      vertical-align: baseline;
+      position: relative;
+      max-width: 40%;
+    }
+
+    figure.fullwidth figcaption {
+      margin-right: 24%;
     }
 
     a {
@@ -101,5 +212,219 @@ html.article {
     pre, code {
       margin-bottom: 24px;
     }
+
+    .sidenote, .marginnote {
+      float: right;
+      clear: right;
+      margin-right: -60%;
+      width: 50%;
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 1.1rem;
+      line-height: 1.3;
+      vertical-align: baseline;
+      position: relative;
+    }
+
+    .sidenote-number {
+      counter-increment: sidenote-counter;
+    }
+
+    .sidenote-number:after, .sidenote:before {
+      content: counter(sidenote-counter) " ";
+      font-family: et-book-roman-old-style;
+      position: relative;
+      vertical-align: baseline;
+    }
+
+    .sidenote-number:after {
+      content: counter(sidenote-counter);
+      font-size: 1rem;
+      top: -0.5rem;
+      left: 0.1rem;
+    }
+
+    .sidenote:before {
+      content: counter(sidenote-counter) " ";
+      top: -0.5rem;
+    }
+
+    blockquote .sidenote, blockquote .marginnote {
+      margin-right: -82%;
+      min-width: 59%;
+      text-align: left;
+    }
+
   }
+
+  p, footer, table {
+    width: 55%;
+  }
+
+  div.fullwidth, table.fullwidth {
+    width: 100%;
+  }
+
+  div.table-wrapper {
+    overflow-x: auto;
+    font-family: "Trebuchet MS", "Gill Sans", "Gill Sans MT", sans-serif;
+  }
+
+  .sans {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    letter-spacing: .03em;
+  }
+
+  code {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 1.0rem;
+    line-height: 1.42;
+  }
+
+  .sans > code {
+    font-size: 1.2rem;
+  }
+
+  h1 > code, h2 > code, h3 > code {
+    font-size: 0.80em;
+  }
+
+  .marginnote > code, .sidenote > code {
+    font-size: 1rem;
+  }
+
+  pre.code {
+    font-size: 0.9rem;
+    width: 52.5%;
+    margin-left: 2.5%;
+    overflow-x: auto;
+  }
+
+  pre.code.fullwidth {
+    width: 90%;
+  }
+
+  .fullwidth {
+    max-width: 90%;
+    clear: both;
+  }
+
+  span.newthought {
+    font-variant: small-caps;
+    font-size: 1.2em;
+  }
+
+  input.margin-toggle {
+    display: none;
+  }
+
+  label.sidenote-number {
+    display: inline;
+  }
+
+  label.margin-toggle:not(.sidenote-number) {
+    display: none;
+  }
+
+  .iframe-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+  }
+
+  .iframe-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+@media (max-width:760px) {
+  .article body {
+    .article-container {
+      width: 84%;
+      padding-left: 8%;
+      padding-right: 8%;
+    }
+
+    .title {
+      width: 84%;
+      padding-left: 8%;
+      padding-right: 8%;
+    }
+
+    article {
+      p, footer {
+        width: 100%;
+      }
+
+      pre.code {
+        width: 97%;
+      }
+
+      section > ol {
+        width: 90%;
+      }
+
+      section > ul {
+        width: 90%;
+      }
+
+      figure {
+        max-width: 100%;
+      }
+
+      figure.fullwidth {
+        max-width: 100%;
+      }
+
+      figcaption, figure.fullwidth figcaption {
+        margin-right: 0%;
+        max-width: none;
+      }
+
+      blockquote {
+        margin-left: 1.5em;
+        margin-right: 0em;
+      }
+
+      blockquote p, blockquote footer {
+        width: 100%;
+      }
+
+      label.margin-toggle:not(.sidenote-number) {
+        display: inline;
+      }
+
+      .sidenote, .marginnote {
+        display: block;
+        float: left;
+        left: 1rem;
+        clear: both;
+        width: 95%;
+        margin: 1rem 2.5%;
+        vertical-align: baseline;
+        position: relative;
+      }
+
+      label {
+        cursor: pointer;
+      }
+
+      div.table-wrapper, table {
+        width: 85%;
+      }
+
+      img {
+        width: 100%;
+      }
+
+    }
+
+  }
+
 }

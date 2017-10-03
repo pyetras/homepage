@@ -1,6 +1,6 @@
 == Slim::Template.new('views/_layout.slim').render(Object.new, _head.merge(_car)) do
   markdown:
-    This article's aim is to present a hardware project I've been recently busy with.
+    Here's a hardware project I've been recently busy with.
 
     With the imminent dawn of self-driving vehicles, the art and craft of developing the software and hardware remains elusive.
     It's no suprise: after all the domain is still very much in it's infancy.
@@ -16,8 +16,11 @@
     The best we can hope for right now is a simulator.
     I believe that making an approximation of the technology available to anyone who wishes to try it is possible, just as it was possible with VR and Google Cardboard.
 
-    ![Prototype 2](/images/kart1.jpg)
+  p
+    figure class="fullwidth"
+      img src="/images/kart1.jpg" alt="Prototype 2"
 
+  markdown:
     The platform I'm proposing is not unlike the Cardboard.
     The principles remain the same: low cost (or made of things you likely already own) and no need for expert knowledge to get started.
     I've been working on a toy car based on a smartphone that is able to reuse the sensors (GPS, compass, accelerometer, light), connectivity and high-res camera available on all modern devices.
@@ -27,7 +30,8 @@
     And it takes your phone for a ride!
 
     ## First Prototype
-  video src="/images/kart0-drive.webm" autoplay=true muted=true loop=true
+  p
+    video src="/images/kart0-drive.webm" autoplay=true muted=true loop=true
 
   markdown:
     The first prototype was a proof of concept of phone-to-computer and phone-to-chip communication.
@@ -55,7 +59,8 @@
     While lacking the 3D-ness, it takes just minutes from an idea to a tangible object, even for bigger parts.
     And once you have the speed and power settings right for your material it's unlikely to fail mid-build.
 
-  video src="/images/kart-drive.webm" autoplay=true muted=true loop=true
+  p
+    video src="/images/kart-drive.webm" autoplay=true muted=true loop=true
 
   markdown:
     The recorded video is not ideal for self-driving purposes - it produces a portrait
