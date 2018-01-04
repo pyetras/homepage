@@ -5,7 +5,11 @@ Uses Node.js v0.11.13.
 
 ## Installation
 
-`npm install`
+```
+npm install
+gem install slim
+gem install pandoc-ruby
+```
 
 ## Building & development
 

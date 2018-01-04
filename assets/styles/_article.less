@@ -1,5 +1,4 @@
 /* https://edwardtufte.github.io/tufte-css/ */
-@article-width: 648px;
 
 html.article {
   background-color: #fff;
@@ -44,7 +43,7 @@ html.article {
       margin: auto;
       box-sizing: border-box;
       padding-top: 12px;
-      width: @article-width;
+      width: 87.5%;
       margin-bottom: 40px;
       display: flex;
       flex-direction: row;
@@ -173,7 +172,7 @@ html.article {
       padding: 0.5rem 0;
     }
 
-    figure {
+    figure, .figure {
       padding: 0;
       border: 0;
       font-size: 100%;
@@ -185,7 +184,7 @@ html.article {
       margin: 0 0 3em 0;
     }
 
-    figcaption {
+    figcaption, .figure .caption {
       float: right;
       clear: right;
       margin-top: 0;
@@ -197,7 +196,7 @@ html.article {
       max-width: 40%;
     }
 
-    figure.fullwidth figcaption {
+    figure.fullwidth figcaption, .figure .caption {
       margin-right: 24%;
     }
 
@@ -304,7 +303,7 @@ html.article {
     width: 90%;
   }
 
-  .fullwidth {
+  .fullwidth, article .figure {
     max-width: 90%;
     clear: both;
   }
@@ -343,7 +342,7 @@ html.article {
 
 }
 
-@media (max-width:760px) {
+@media (max-width:1024px) {
   .article body {
     .article-container {
       width: 84%;
@@ -374,15 +373,15 @@ html.article {
         width: 90%;
       }
 
-      figure {
+      figure, .figure {
         max-width: 100%;
       }
 
-      figure.fullwidth {
+      figure.fullwidth, .figure {
         max-width: 100%;
       }
 
-      figcaption, figure.fullwidth figcaption {
+      figcaption, figure.fullwidth figcaption, .figure .caption {
         margin-right: 0%;
         max-width: none;
       }
