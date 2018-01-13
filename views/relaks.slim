@@ -17,15 +17,19 @@
 
     Consider the following statement:
 
-        val k = choose between 1 and 5
-        select k where k == 2
+    ~~~ {.scala}
+    val k = choose between 1 and 5
+    select k where k == 2
+    ~~~
 
     Looks simple enough, right? With a slight syntax alterations Prolog could do it.
     SQL could do it, if `choose` was a function that generates a table of numbers.
     Even in Python, a program where `choose` is replaced by `range` would look similar enough. How about
 
-        val k = choose between 1.0 and 5.0
-        select k where k == 2.0
+    ~~~ {.scala}
+    val k = choose between 1.0 and 5.0
+    select k where k == 2.0
+    ~~~
 
     In theory it should be unsolvable by Prolog in the straightforward, left to right tree traversal - there is infinitely many numbers between 1.0 and 2.0.
     An implementation of this search based on computer's representation of floating numbers would eventually finish.
@@ -35,8 +39,10 @@
 
     How about
 
-        val k = choose between 2 and 10
-        optimize (knnExperiment k) by errorRate desc limit 10
+    ~~~ {.scala}
+    val k = choose between 2 and 10
+    optimize (knnExperiment k) by errorRate desc limit 10
+    ~~~
 
     What I would like this expression to do is to run a K Nearest Neighbors algorithm ten times while trying to minimize `errorRate` by tweaking the parameter k.
     It turns out that KNN and other machine learning algorithms can be successfully [modelled as Gaussian Processes](https://github.com/JasperSnoek/spearmint) and iteratively optimised wrt. their hyperparameters.
