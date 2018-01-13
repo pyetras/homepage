@@ -28,11 +28,11 @@
         select k where k == 2.0
 
     In theory it should be unsolvable by Prolog in the straightforward, left to right tree traversal - there is infinitely many numbers between 1.0 and 2.0.
-    An implementation of this search based on computer's representation of floating numbers would eventually finish. 
-    If the function evaluating k was more expensive it's easy to see how a standard left-to-right search would take a long time. 
+    An implementation of this search based on computer's representation of floating numbers would eventually finish.
+    If the function evaluating k was more expensive it's easy to see how a standard left-to-right search would take a long time.
     The same happens if we add more parameters to the function - the search space grows exponentially.
     If we knew that the function could be solved using e.g. [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization), we could write a much more efficient search procedure that would return a result within an acceptable error margin.
-    
+
     How about
 
         val k = choose between 2 and 10
@@ -40,22 +40,19 @@
 
     What I would like this expression to do is to run a K Nearest Neighbors algorithm ten times while trying to minimize `errorRate` by tweaking the parameter k.
     It turns out that KNN and other machine learning algorithms can be successfully [modelled as Gaussian Processes](https://github.com/JasperSnoek/spearmint) and iteratively optimised wrt. their hyperparameters.
-    
+
     ## Relaks
-    
+
     Above snippets are valid programs in Relaks - a Scala DSL.
     The similarities between Relaks and SQL are intentional - it uses a powerful *experiment database* metaphor to define search space.
     The columns are inputs and outputs of the optimised algorithms - hyperparameters and evaluated fitness.
     Once defined, a table can be queried using familiar SQL-like syntax - LIMIT, WHERE etc.
     Under the hood the table doesn't actually exist - it is generated row by row, using hints from the query to limit possibly very large search space.
-    For example a WHERE clause would narrow down the set of hyperparameters and LIMIT would decrease the number of performed search iterations. 
+    For example a WHERE clause would narrow down the set of hyperparameters and LIMIT would decrease the number of performed search iterations.
     Let's take a look at a comprehensive example:
-  
-  span.marginnote Hello
-  
-  markdown:
+
     ~~~ {.scala}
-    object Program extends 
+    object Program extends
         DSLOptimizerInterpreter(SpearmintOptimizer) {
       val x = choose between 0.0 and 15.0
       val y = choose between -5.0 and 10.0
@@ -63,7 +60,7 @@
       val result = optimize (x, y) map { case Tup(x, y) =>
         val res = to (branin _) apply (x, y)
         res as 'result
-      } by 'result 
+      } by 'result
         limit 100
 
       store(result)
@@ -71,14 +68,14 @@
 
     Program.dump()
     ~~~
-    
+
     This program will try to find a minimum of the Branin-Hoo function within the specified search space, using up to 100 iterations of an optimisation algorithm.
     `store` and `dump` are hints to the interpreter to materialise and print out the experiment table at the end of the program.
-    
+
     ## Work in progress...
 
-    An experimental implementation of a language of the future with a Gaussian Process optimiser as a DSL for Scala is available on [Github](//github.com/pyetras/relaks). 
-    It consists of LINQ-like extensions for Scala with a query optimiser that can reorder SQL operators and fuse them with hyperparameter definitions. 
+    An experimental implementation of a language of the future with a Gaussian Process optimiser as a DSL for Scala is available on [Github](//github.com/pyetras/relaks).
+    It consists of LINQ-like extensions for Scala with a query optimiser that can reorder SQL operators and fuse them with hyperparameter definitions.
     I have also implemented an interpreter for the language and a caching system that can factor out common operations between subsequent optimiser runs and cache the results in memory.
     This was part of my [Master's Thesis](/relaks.pdf).
 

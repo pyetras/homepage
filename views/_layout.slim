@@ -14,17 +14,15 @@ html.article
   body.article
     == File.read("views/_gtm.html")
     header
-      / .icons
-      /   a href="/" title="pyetras.com"
-      /     span.fa-stack
-      /       i.fa.fa-circle.fa-stack-2x
-      /       i.fa.fa-home.fa-inverse.fa-stack-1x
-      /   a href="https://github.com/pyetras" title="GitHub"
-      /     span.fa-stack
-      /       i.fa.fa-circle.fa-stack-2x
-      /       i.fa.fa-github.fa-inverse.fa-stack-1x
+      .homepage
+        a.text href="/" ⟵ Homepage
+        / a.icon href="https://github.com/pyetras" title="GitHub"
+        /   span.fa-stack
+        /     i.fa.fa-circle.fa-stack-2x
+        /     i.fa.fa-github.fa-inverse.fa-stack-1x
+
       .title-container
-        p.subtitle
+        p.subtitle.author
           a href="/" Piotr Sokólski
         h1==article["title"]
     .main

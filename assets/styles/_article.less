@@ -18,42 +18,53 @@ html.article {
     background-color: @header-color;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    
+
+    .homepage {
+      width: 92%;
+      font-size: 1rem;
+      margin-left: 8%;
+      margin-top: 12px;
+
+      a {
+        .underlined(#fff, @header-color);
+      }
+    }
+
     .title-container {
       width: 45rem;
     }
-    
+
     .icons {
       width: 45rem;
       text-align: right;
-      
+
       a {
         color: rgba(255,255,255,.9)
       }
-      
+
       .fa-inverse {
         color: @header-color;
       }
-      
+
       a:hover {
         color: #fff;
       }
     }
-    
+
     h1 {
       font-size: 56px;
       margin-bottom: 48px;
       letter-spacing: -1px;
       line-height: 1.3em;
     }
-      
+
     .subtitle {
       font-style: italic;
       margin-top: 1rem;
       margin-bottom: 1rem;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       display: block;
       line-height: 1;
     }
