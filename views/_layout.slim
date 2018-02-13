@@ -29,6 +29,8 @@ html.article
       .article-container
           article
             == yield
+    script
+      | document.querySelectorAll('video').forEach((x)=> { x.play(); x.click(() => x.play())});
 
 
     /! inject:vendor:js
