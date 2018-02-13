@@ -1,60 +1,79 @@
 == Slim::Template.new('views/_layout.slim').render(Object.new, _head.merge(_relaks)) do
   markdown:
     I love the idea behind declarative programming languages: you start by specifying the result you want to achieve rather than how you want to achieve it.
-    Some, such as SQL hide away the complexity by providing a fixed set of highly optimised and yet expressive high-level operations such as SELECT, JOIN etc.
-    Others, such as my personal favourite, Prolog, allow achieving similar results while granting unlimited flexibility.
+    Some, such as SQL hide away the complexity by providing a fixed set of highly optimized and yet expressive high-level operations such as SELECT, JOIN etc.
+    Others, such as my personal favorite, Prolog, allow unlimited flexibility as long as you're willing to implement your own operators.
 
     The design of Prolog is simple and beautiful.
-    It basically does just two things, and it does them really well: allow
-    you to specify a search tree for your problem and then traverse that
-    tree.
+    It basically does just two things, and it does them really well: allow you to specify a search tree for your problem and then traverse that tree.
 
-    The devil is in the details though: Prolog's logic based rules are pure and merciless.
-    One overlooked condition, and the program would be stuck forever, generating and mindlessly following an infinite number of branches in the tree, while the solution might lie just in the *sibling* of one of the looping nodes.
+    The devil is in the details though: Prolog's logic based rules are merciless.
+    One overlooked condition, and the program would be stuck forever, generating and mindlessly following an infinite number of branches in the tree, while the solution might lie just in the *sibling* of one of the looping branches.
 
     In my opinion the language of the future does not *traverse* the tree specified by the programmer, whether it's an Abstract Syntax Tree that is translated literally to a sequence of operations, or a tree of theorems and conclusions traversed by Prolog.
-    Instead it *explores* it.
+    Instead it *explores* it, not afraid to skip some operational branches if a solution can be found faster.
 
-    Consider the following statement:
+    Currently it is not yet feasible to have an entire program generated or executed by some intelligent system based on a loose set of requirements - I believe that, dependent on how loose and high level the requirements are, achieving this goal would be very close to building a general artificial intelligence.
+    We can, however, relax our imperative set of instructions a little bit, *allowing our program to be clever when the operational details are vague*.
+    This saves us some time by decreasing the number of operations we have to explicitly code in a program.
+
+    Consider the following program:
 
     ~~~ {.scala}
     val k = choose between 1 and 5
-    select k where k == 2
+    val answer = (k == 4) ? "Happy" : "Sad"
+    select answer, k where answer == "Happy"
     ~~~
 
-    Looks simple enough, right? With a slight syntax alterations Prolog could do it.
+    Imagine that the constant `4` is replaced by some hidden variable that our program is trying to find, in order to know when the answer would say `"Happy"`.
+    The only prior knowledge we have is that it's value lies somewhere between 1 and 5.
+    Looks simple enough, right?
+    We could write a simple for loop to find the desired value of `k`.
+    With a slight syntax alterations Prolog could do it very easily by testing each value of `k` as a separate hypothesis.
     SQL could do it, if `choose` was a function that generates a table of numbers.
-    Even in Python, a program where `choose` is replaced by `range` would look similar enough. How about
-
-    ~~~ {.scala}
-    val k = choose between 1.0 and 5.0
-    select k where k == 2.0
-    ~~~
-
-    In theory it should be unsolvable by Prolog in the straightforward, left to right tree traversal - there is infinitely many numbers between 1.0 and 2.0.
-    An implementation of this search based on computer's representation of floating numbers would eventually finish.
-    If the function evaluating k was more expensive it's easy to see how a standard left-to-right search would take a long time.
-    The same happens if we add more parameters to the function - the search space grows exponentially.
-    If we knew that the function could be solved using e.g. [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization), we could write a much more efficient search procedure that would return a result within an acceptable error margin.
+    Even in Python, a program where `choose` is replaced by `range` would look similar enough.
 
     How about
 
     ~~~ {.scala}
-    val k = choose between 2 and 10
-    optimize (knnExperiment k) by errorRate desc limit 10
+    val k = choose between 1.0 and 5.0
+    val answer = (k ~= 4.0) ? "Happy" : "Sad"
+    select answer, k where answer == "Happy"
     ~~~
 
-    What I would like this expression to do is to run a K Nearest Neighbors algorithm ten times while trying to minimize `errorRate` by tweaking the parameter k.
-    It turns out that KNN and other machine learning algorithms can be successfully [modelled as Gaussian Processes](https://github.com/JasperSnoek/spearmint) and iteratively optimised wrt. their hyperparameters.
+    where `~=` is float comparison.
+    It's easy to see how a standard left-to-right search would waste a lot of cycles, since there's a lot of values between `1.0` and `4.0`.
+    The same happens if we add more parameters to the function - the search space grows exponentially.
+    If the problem was instead stated as looking for a solution to a function `k - 4.0 ~= 0`, it could be solved much faster using e.g. [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization).
+    The takeaway from this is: if we have a useful model of our parameter space (in this example a differentiable function of one variable), we are able to search for a solution efficiently.
+
+    If the above examples don't look very useful consider instead
+
+    ~~~ {.scala}
+    val k = choose between 2 and 50
+    val experiment = trainKnn(k, trainingData, trainingLabels)
+    optimize experiment by experiment.errorRate limit 10
+    ~~~
+
+    What I would like this expression to do is to run a K Nearest Neighbors while trying to minimize `errorRate` by tweaking the parameter `k`.
+    Furthermore, I would like the optimization to finish after no more than 10 iterations.
+    Such optimization procedure is often implemented as [grid search](https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search) in popular machine learning packages such as [sklearn](http://scikit-learn.org/stable/modules/grid_search.html).
+    However, it turns out that KNN and other machine learning algorithms' objective function can be successfully [modeled as a Gaussian Processes](https://github.com/JasperSnoek/spearmint) and iteratively optimized wrt. their hyperparameters.
 
     ## Relaks
 
     Above snippets are valid programs in Relaks - a Scala DSL.
-    The similarities between Relaks and SQL are intentional - it uses a powerful *experiment database* metaphor to define search space.
-    The columns are inputs and outputs of the optimised algorithms - hyperparameters and evaluated fitness.
-    Once defined, a table can be queried using familiar SQL-like syntax - LIMIT, WHERE etc.
-    Under the hood the table doesn't actually exist - it is generated row by row, using hints from the query to limit possibly very large search space.
-    For example a WHERE clause would narrow down the set of hyperparameters and LIMIT would decrease the number of performed search iterations.
+    It treats unknown parameters as first-class citizens - to a programmer there's no distinction between a parameter and operationally computed variable while writing the program.
+    This allows stating a parameter search problem in a declarative way, abstracting away the "how" and focusing on the "what".
+
+    The similarities between Relaks and SQL are intentional - it uses a powerful *experiment database* metaphor to define the optimization problem.
+    It exposes a [LINQ](https://en.wikipedia.org/wiki/Language_Integrated_Query)-like API to the programmer.
+    The columns are inputs and outputs of the algorithms under optimization - hyperparameters and evaluated fitness, but also any output an algorithm may produce, for bookkeeping.
+    Once defined, an experiment table can be queried using familiar SQL-like syntax - LIMIT, WHERE etc via the LINQ API.
+    Using the API the programmer can manipulate the search space and optimization process using almost natural language.
+    For example a WHERE clause on a hyperparameter would narrow down the search space and LIMIT would decrease the number of performed search iterations.
+    Under the hood the experiment table doesn't actually exist - it is generated row by row, using hints from the query to limit possibly very large search space.
+
     Let's take a look at a comprehensive example:
 
     ~~~ {.scala}
@@ -65,9 +84,13 @@
 
       val result = optimize (x, y) map { case Tup(x, y) =>
         val res = to (branin _) apply (x, y)
-        res as 'result
-      } by 'result
+        res as 'answer
+      } by 'answer
         limit 100
+
+      // This could alternatively be written as
+      // val answer = to (branin _) apply (x, y)
+      // val result = optimize (x, y) by answer limit 100
 
       store(result)
     }
@@ -75,13 +98,13 @@
     Program.dump()
     ~~~
 
-    This program will try to find a minimum of the Branin-Hoo function within the specified search space, using up to 100 iterations of an optimisation algorithm.
-    `store` and `dump` are hints to the interpreter to materialise and print out the experiment table at the end of the program.
+    This program will try to find a minimum of the [Branin-Hoo function](http://www-optima.amp.i.kyoto-u.ac.jp/member/student/hedar/Hedar_files/TestGO_files/Page913.htm) within the specified search space, using up to 100 iterations of an optimization algorithm.
+    `store` and `dump` are hints to the interpreter to materialize and print out the experiment table at the end of the program.
 
     ## Work in progress...
 
-    An experimental implementation of a language of the future with a Gaussian Process optimiser as a DSL for Scala is available on [Github](//github.com/pyetras/relaks).
+    An experimental implementation of a language of the future with a Gaussian Process optimizer as a DSL for Scala is available on [Github](https://github.com/pyetras/relaks).
     It consists of LINQ-like extensions for Scala with a query optimiser that can reorder SQL operators and fuse them with hyperparameter definitions.
-    I have also implemented an interpreter for the language and a caching system that can factor out common operations between subsequent optimiser runs and cache the results in memory.
-    This was part of my [Master's Thesis](/relaks.pdf).
+    I have also implemented an interpreter for the language and a caching system that can factor out common operations between subsequent optimizer runs and cache the results in memory.
+    This was part of my [Master's Thesis](/relaks.pdf) ([abstract](https://github.com/pyetras/relaks)).
 

@@ -5,15 +5,18 @@ html.article {
 }
 
 .article body {
-  background: linear-gradient(to bottom, @header-color 400px, #fff 400px);
+  background: linear-gradient(to bottom, @header-color 360px, #fff 360px);
   background-color: #fff;
   counter-reset: sidenote-counter;
 
+  header, h2 {
+    font-family: "Merriweather","PT Serif",Georgia,"Times New Roman",serif;
+  }
+
   header {
-    font-family: HoeflerText-Regular, Cochin, Georgia, serif;
     width: 100%;
-    min-height: 400px - 15px;
-    padding-bottom: 15px;
+    min-height: 360px - 58px;
+    padding-bottom: 58px;
     color: #fff;
     background-color: @header-color;
     display: flex;
@@ -55,15 +58,13 @@ html.article {
 
     h1 {
       font-size: 56px;
-      margin-bottom: 48px;
       letter-spacing: -1px;
       line-height: 1.3em;
+      margin-bottom: 1rem;
     }
 
     .subtitle {
       font-style: italic;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
       font-size: 1.6rem;
       display: block;
       line-height: 1;
@@ -119,7 +120,6 @@ html.article {
     }
 
     h2 {
-      font-family: HoeflerText-Regular, Cochin, Georgia, serif;
       font-weight: 400;
       font-size: 1.7rem;
       margin-top: 2rem;
@@ -211,7 +211,8 @@ html.article {
     }
 
     pre, code {
-      margin-bottom: 24px;
+      margin-top: 36px;
+      margin-bottom: 36px;
     }
   }
 
@@ -228,7 +229,7 @@ html.article {
   code {
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 1.0rem;
-    line-height: 1.42;
+    line-height: 0.3;
   }
 
   .sans > code {
@@ -305,6 +306,10 @@ html.article {
       width: 84%;
       padding-left: 8%;
       padding-right: 8%;
+    }
+
+    header br {
+      display: none;
     }
 
     article {
