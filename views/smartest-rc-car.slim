@@ -29,7 +29,10 @@
 
     ## First Prototype
   p
-    video src="/images/kart0-drive.webm" autoplay=true muted=true loop=true
+    video autoplay=true muted=true loop=true
+      source src="/images/kart0-drive.webm"
+      source src="/images/kart0-drive.mp4"
+
 
   markdown:
     The first prototype was a proof of concept of phone-to-computer and phone-to-chip communication.
@@ -58,7 +61,10 @@
     And once you have the speed and power settings right for your material it's unlikely to fail mid-build.
 
   p
-    video src="/images/kart-drive.webm" autoplay=true muted=true loop=true
+    video autoplay=true muted=true loop=true
+      source src="/images/kart-drive.webm"
+      source src="/images/kart-drive.mp4"
+  script document.querySelectorAll('video').forEach((x)=>x.play());
 
   markdown:
     The recorded video is not ideal for self-driving purposes - it produces a portrait
