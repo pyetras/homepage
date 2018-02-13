@@ -25,12 +25,46 @@
     font-size: 24pt;
   }
 
-  ul {
+  ul, .fullsize {
     @media screen and (min-width: 500px) {
       margin-left: 1em;
     }
     margin-top: 1em;
 
+    .thumbnail {
+      overflow: hidden;
+      float: left;
+      margin-right: 12px;
+      background-size: cover;
+      mask-image: radial-gradient(circle, white 100%, black 100%);
+    }
+
+    h3 {
+      margin-top: 3px;
+      margin-bottom: 3px;
+      span {
+        .underlined(#555, @projects-color);
+      }
+    }
+  }
+
+  .fullsize {
+    display: inline-block;
+    margin-bottom: 1em;
+
+    .thumbnail {
+      width: 150px;
+      height: 150px;
+      background-image: url('/images/car3.jpg');
+      border-radius: 5px;
+    }
+
+    &:hover h3::after {
+      content: " »";
+    }
+  }
+
+  ul {
     a {
       display: inline-block;
       // transition: transform 200ms;
@@ -66,22 +100,12 @@
       .thumbnail {
         width: 100px;
         height: 100px;
-        overflow: hidden;
-        float: left;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
-        margin-right: 12px;
-        background-size: cover;
-        mask-image: radial-gradient(circle, white 100%, black 100%);
       }
 
       h3 {
         font-weight: 400;
-        margin-top: 3px;
-        margin-bottom: 3px;
-        span {
-          .underlined(#555, @projects-color);
-        }
       }
 
       p {

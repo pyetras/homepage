@@ -26,9 +26,17 @@ header
 hr
 
 section id="projects"
-  h2 Projects
+  h2 Projects - Current
+  a.fullsize href="/smartest-rc-car.html"
+    div.thumbnail
+      video width="auto" height="100%" autoplay=true muted=true loop=true poster="./images/car3.jpg"
+        source src="./images/car3.mp4"
+        source src="./images/car3.webm"
+    h3: span car3
+    p A low-cost, high-fun platform for experimenting with self-driving cars.
+  h2 Projects - Past
   ul
-    - for proj in projects
+    - for proj in past_projects
       a *{'class'=>proj['class'], 'href'=>proj['href'], 'title'=>proj['name']}
         li
           div.thumbnail
@@ -38,3 +46,7 @@ section id="projects"
                   source src=video['src']
           h3: span = proj['name']
           p = proj['description']
+// A fix for safari.
+script
+  | document.querySelectorAll('video').forEach((x)=>x.play());
+

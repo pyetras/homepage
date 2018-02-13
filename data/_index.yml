@@ -1,8 +1,13 @@
-projects:
+past_projects:
   - name: Relaks
     class: relaks
     description: "Relaks is a Scala DSL for defining Machine Learning experiments and automatically optimizing their parameters. Coming soon!"
     href: "/relaks.html"
+
+  - name: RoboD
+    class: robod
+    href: "https://goo.gl/photos/NNUHQV7c3nEkw5D89"
+    description: A proud (robot) sumo champion! An excursion into embedded programming with C.
 
   - name: Progress
     class: progress
@@ -40,8 +45,3 @@ projects:
       - src: "/images/readabit.mp4"
       - src: "/images/readabit.webm"
     poster: "images/readabit.png"
-
-  - name: RoboD
-    class: robod
-    href: "https://goo.gl/photos/NNUHQV7c3nEkw5D89"
-    description: A proud (robot) sumo champion! An excursion into embedded programming with C.
