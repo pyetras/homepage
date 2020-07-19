@@ -4,15 +4,13 @@ PRODID:-//Apple Inc.//Mac OS X 10.11.1//EN
 N:Sokólski;Piotr;;;
 FN:Piotr Sokólski
 NICKNAME:Pietras
-EMAIL;type=INTERNET;type=WORK;type=pref:p@pyetras.com
-TEL;type=IPHONE;type=CELL;type=VOICE;type=pref:+48 602 489 956
-item1.X-ABADR:pl
+EMAIL;type=INTERNET;type=WORK;type=pref:pietraswithin@gmail.com
 ADR:;;;Warsaw;Masovian Voivodeship;;Poland
 X-SOCIALPROFILE;type=gamecenter;x-user=pyetras;x-userid=G:1070094720:http://link.gc.apple.com/players/G:1070094720
 X-SOCIALPROFILE;type=facebook;x-userid=100000067268507;x-displayname=Piotr Sokólski:https://www.facebook.com/profile.php?id=100000067268507
-item2.URL;type=pref:pyetras.com
+item2.URL;type=pref:ptr.cx
 item2.X-ABLabel:_$!<HomePage>!$_
-item3.URL:http://pyetras.com
+item3.URL:http://ptr.cx
 item3.X-ABLabel:_$!<HomePage>!$_
 BDAY:1990-09-29
 IMPP;X-SERVICE-TYPE=GoogleTalk;type=HOME;type=pref:xmpp:pietraswithin@gmail.com
@@ -179,7 +177,7 @@ PHOTO;ENCODING=b;TYPE=JPEG:/9j/4AAQSkZJRgABAgAAAQABAAD/7QCEUGhvdG9zaG9wIDMu
  SHBNc+M0awsxTZt3HV9YVmDUYBS+N4IMFWwuHMDEGwafbZhioyFqq83EoC3Y3Citzm1z6ogniZ
  uXEhQ2HrBOo6fByRgrG/lvGJFGQgvAuj7w4wvGu7f4xMlVkGev2wouqFKyvLvzlcIK83oawnca
  PnXL794QqSvDrnKiLNjWmzQmnFnqChKTTNJ4m24lESeM/9k=
-CATEGORIES:różne
+CATEGORIES:misc
 X-ABUID:E29EB6A1-5EB0-403F-ABA3-75B22E484A29
 TZ;VALUE=utc-offset:1
 LANG:en_GB
