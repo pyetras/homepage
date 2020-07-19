@@ -1,2 +1,2 @@
-# [pyetras.com](http://pyetras.com)
+# [ptr.cx](http://ptr.cx)
 Development takes place in the `dev` branch.
